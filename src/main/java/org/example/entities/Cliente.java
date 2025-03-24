@@ -1,10 +1,20 @@
-package org.example;
+package org.example.entities;
 
+import javax.persistence.*;
+
+//@Entity
+//@Table(name="clienti")
 public class Cliente {
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_cliente;
+//    @Column(name="nome_cliente", nullable=false, length=50)
     private String nome;
+//    @Column(nullable = false, length=50)
     private String cognome;
+//    @Column(nullable = false, unique=true)
     private String email;
+//    @Column(nullable = false, unique=true)
     private String telefone;
 
     public Cliente(int id_cliente,String nome, String cognome, String email, String telefone) {
@@ -15,6 +25,7 @@ public class Cliente {
         this.email = email;
         this.telefone = telefone;
     }
+
     public Cliente(String nome, String cognome, String email, String telefone) {
 
 
@@ -23,6 +34,8 @@ public class Cliente {
         this.email = email;
         this.telefone = telefone;
     }
+
+    public Cliente(){}
 
     public int getId_cliente() {
         return id_cliente;

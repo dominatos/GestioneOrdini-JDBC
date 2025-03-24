@@ -1,19 +1,40 @@
-package org.example;
+package org.example.entities;
 
+import javax.persistence.*;
+
+//@Entity
+//@Table(name="prodotti")
 public class Prodotto {
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_prodotto;
+//    @Column(name="nome_prodotto", nullable=false, length=100)
     private String nome;
+//    @Column(name="descr_prodotto",nullable = true)
     private String descrizione;
+//    @Column(nullable=false,scale=2)
     private double prezzo;
+//    @Column(nullable=false)
     private int quantita_disponibile;
-
+    private int quantita_perordine;
     public Prodotto(String nome, String descrizione, double prezzo, int quantita_disponibile) {
         this.nome = nome;
         this.descrizione = descrizione;
         this.prezzo = prezzo;
         this.quantita_disponibile = quantita_disponibile;
     }
-    public Prodotto(int id_prodotto,String nome, String descrizione, double prezzo, int quantita_disponibile) {
+    public Prodotto(String nome, String descrizione, double prezzo, int quantita_disponibile,int quantita_perordine) {
+        this.nome = nome;
+        this.descrizione = descrizione;
+        this.prezzo = prezzo;
+        this.quantita_disponibile = quantita_disponibile;
+        this.quantita_perordine = quantita_perordine;
+    }
+
+    public Prodotto() {
+    }
+
+    public Prodotto(int id_prodotto, String nome, String descrizione, double prezzo, int quantita_disponibile) {
 
         this.id_prodotto = id_prodotto;
     this.nome = nome;
@@ -26,7 +47,13 @@ public class Prodotto {
         return id_prodotto;
     }
 
+    public int getQuantita_perordine() {
+        return quantita_perordine;
+    }
 
+    public void setQuantita_perordine(int quantita_perordine) {
+        this.quantita_perordine = quantita_perordine;
+    }
 
     public String getNome() {
         return nome;
@@ -60,8 +87,7 @@ public class Prodotto {
         this.quantita_disponibile = quantita_disponibile;
     }
     public int setQuantita_disponibiledopoordine(int x) {
-        int quantita_disponibile=this.quantita_disponibile-x;
-        this.quantita_disponibile = quantita_disponibile;
+        this.quantita_disponibile = this.quantita_disponibile-x;
     return this.quantita_disponibile;
 
     }
