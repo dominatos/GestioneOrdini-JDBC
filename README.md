@@ -1,3 +1,5 @@
+soluzione al esercizio:<br><br>
+
 Gestione di un Database Relazionale MySQL con JDBC in Java<br><br>
 
 Creare un database se non esiste chiamato GestioneOrdini.<br>
