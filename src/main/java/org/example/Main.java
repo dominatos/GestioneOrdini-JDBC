@@ -96,6 +96,7 @@ public class Main
                     "\n scrivi 6 per remove prodotto" +
                     "\n scrivi 7 per remove cliente" +
                     "\n scrivi 8 per remove ordine" +
+                    "\n scrivi 13 per modificare" +
                     "\n scrivi 9 per vedere tutti ordini" +
                     "\n scrivi 10 per vedere tutti prodotti" +
                     "\n scrivi 11 per vedere tutti clienti" +
@@ -288,7 +289,14 @@ public class Main
 
 
 
+            }else if (sinoval.equals("13")) {
+                System.out.println("per modificare prodotto/ordine/cliente devi usare methodi ma non menu!");
+
+
+
+
             }
+
 
 
             else if (sinoval.equals("0")) {

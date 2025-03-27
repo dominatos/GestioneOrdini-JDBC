@@ -1,6 +1,6 @@
 package org.example.entities;
 
-import javax.persistence.*;
+
 
 //@Entity
 public class Dettagliordine {
