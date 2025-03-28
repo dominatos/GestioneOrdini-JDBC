@@ -1,19 +1,27 @@
 package org.example.entities;
 
 
+import javax.persistence.*;
+import java.math.BigDecimal;
 
-//@Entity
+@Entity
+@NamedQuery(name = "Dettagliordine.findAll", query = "SELECT d FROM Dettagliordine d")
 public class Dettagliordine {
-    //    @Column(nullable = false)
+        @Column(nullable = false)
     private int quantita;
-//    @Column(nullable = false,scale=2)
+    @Column(nullable = false,scale=2)
     private double prezzo_unitario;
-//    @ManyToOne
-//    @JoinColumn(name = "id_ordine", nullable = false, foreignKey = @ForeignKey(name = "ordinidetagli_ordini_fk"))
+    @ManyToOne
+    @JoinColumn(name = "id_ordine", nullable = false, foreignKey = @ForeignKey(name = "ordinidetagli_ordini_fk"))
     private Ordine ordine;
-//    @ManyToOne
-//    @JoinColumn(name = "id_prodotto", nullable = false, foreignKey = @ForeignKey(name = "ordinidetagli_prodotto_fk"))
+    @ManyToOne
+    @JoinColumn(name = "id_prodotto", nullable = false, foreignKey = @ForeignKey(name = "ordinidetagli_prodotto_fk"))
     private Prodotto prodotto;
+    @Id
+    @GeneratedValue
+    private Integer id;
+
+
 
     public Dettagliordine(int quantita, double prezzo_unitario, Ordine ordine,Prodotto prodotto) {
         this.quantita = quantita;
@@ -26,8 +34,7 @@ public class Dettagliordine {
     }
 
     public Dettagliordine(int id_dettagli_ordini, int quantita, double prezzo_unitario, Ordine ordine, Prodotto prodotto) {
-        //    @Id
-        //    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
         this.quantita = quantita;
         this.prezzo_unitario = prezzo_unitario;
         this.ordine = ordine;
@@ -68,5 +75,13 @@ public class Dettagliordine {
 
     public void setProdotto(Prodotto prodotto) {
         this.prodotto = prodotto;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getId() {
+        return id;
     }
 }

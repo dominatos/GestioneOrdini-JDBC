@@ -1,21 +1,26 @@
 package org.example.entities;
 
 
+import javax.persistence.*;
+import java.math.BigDecimal;
 
-//@Entity
-//@Table(name="prodotti")
+@Entity
+@Table(name="prodotti")
+@NamedQuery(name = "Prodotto.findAll", query = "SELECT p FROM Prodotto p")
+@NamedQuery(name = "Prodotto.count", query = "SELECT count(p) FROM Prodotto p")
 public class Prodotto {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_prodotto;
-//    @Column(name="nome_prodotto", nullable=false, length=100)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id_prodotto;
+    @Column(name="nome_prodotto", nullable=false, length=100)
     private String nome;
-//    @Column(name="descr_prodotto",nullable = true)
+    @Column(name="descr_prodotto",nullable = true)
     private String descrizione;
-//    @Column(nullable=false,scale=2)
+    @Column(nullable=false,scale=2)
     private double prezzo;
-//    @Column(nullable=false)
+    @Column(nullable=false)
     private int quantita_disponibile;
+    @Transient
     private int quantita_perordine;
     public Prodotto(String nome, String descrizione, double prezzo, int quantita_disponibile) {
         this.nome = nome;
@@ -23,6 +28,7 @@ public class Prodotto {
         this.prezzo = prezzo;
         this.quantita_disponibile = quantita_disponibile;
     }
+
     public Prodotto(String nome, String descrizione, double prezzo, int quantita_disponibile,int quantita_perordine) {
         this.nome = nome;
         this.descrizione = descrizione;
@@ -91,6 +97,11 @@ public class Prodotto {
     return this.quantita_disponibile;
 
     }
+
+    public void setId_prodotto(Integer id_prodotto) {
+        this.id_prodotto = id_prodotto;
+    }
+
 
     @Override
     public String toString() {

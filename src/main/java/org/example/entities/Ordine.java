@@ -1,23 +1,31 @@
 package org.example.entities;
 
 
+import org.example.DAO.DettagliordineDAO;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
-//@Entity
-//@Table(name="ordini")
+import static org.example.Main.*;
+
+@Entity
+@Table(name="ordini")
+@NamedQuery(name = "Ordine.findAll", query = "SELECT o FROM Ordine o")
 public class Ordine {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_ordine;
-//    @Column(nullable = false,columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id_ordine;
+    @Column(nullable = false,columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime data_ordine;
+    @Transient
     private List<Prodotto> listaProdotti=new ArrayList<>();
-//    @ManyToOne
-//    @JoinColumn(name = "id_cliente", nullable = false, foreignKey = @ForeignKey(name = "ordini_clienti_fk"))
+    @ManyToOne
+    @JoinColumn(name = "id_cliente", nullable = false, foreignKey = @ForeignKey(name = "ordini_clienti_fk"))
     private Cliente cliente;
 
     public Ordine(Cliente cliente) {
@@ -80,24 +88,36 @@ public class Ordine {
     }
     public String stampProdotti() {
         String stampe = "";
+        BigDecimal prezzo=new BigDecimal("0.00");
+
+
         for (Prodotto prodotto : this.listaProdotti) {
+
+            prezzo= BigDecimal.valueOf(prodotto.getPrezzo());
+            prezzo = prezzo.setScale(2, BigDecimal.ROUND_HALF_UP);
             stampe =stampe+" ID: " + prodotto.getId_prodotto() + " Nome prodotto: " +
-                    prodotto.getNome() + " " +
-                    prodotto.getQuantita_perordine() + "pz. Prezzo " +
-                    prodotto.getPrezzo() + "€\n";
+                    prodotto.getNome() + " -" +
+                    prodotto.getQuantita_perordine() + "pz. - " +
+                    prezzo + "€\n";
         }
         return stampe;
     }
 
 
     public void stampa() {
-        System.out.println(
-                "********************Ordine " + id_ordine +
+        BigDecimal totale;
+        totale= this.totale();
+        totale = totale.setScale(2, BigDecimal.ROUND_HALF_UP);
 
-                "********************\n" +"Cliente ID:" + cliente.getId_cliente()+" "+cliente.getNome()+" "+cliente.getCognome() +
-                        "Data=" + data_ordine +
-                "\n Prodotti in ordine:\n" + stampProdotti() +
-                " \nOrdine totale:"+totale()+"\n************************************************"
+
+
+        System.out.println(
+                "********************Ordine " + this.id_ordine +
+
+                "********************\n" +"Cliente ID:" + this.cliente.getId_cliente()+" "+cliente.getNome_cliente()+" "+cliente.getCognome() +
+                        "\nData:" + this.data_ordine.toLocalDate() +
+                "\n Prodotti in ordine:\n" + this.stampProdotti() +
+                " \nOrdine totale:"+totale+"€\n************************************************"
         );
 
     }
