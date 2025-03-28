@@ -1,4 +1,4 @@
-package org.example.exceptions;
+package org.example;
 
 public class NonAbbastanzaQuantException extends RuntimeException {
     public NonAbbastanzaQuantException(String message) {

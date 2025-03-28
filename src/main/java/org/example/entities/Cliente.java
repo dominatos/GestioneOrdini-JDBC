@@ -1,43 +1,38 @@
 package org.example.entities;
 
 
-import javax.persistence.*;
 
-@Entity
-@Table(name="clienti")
-@NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")
-@NamedQuery(name = "Cliente.count", query = "SELECT count(c) FROM Cliente c")
-
+//@Entity
+//@Table(name="clienti")
 public class Cliente {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_cliente;
-    @Column(name="nome_cliente", nullable=false, length=50)
-    private String nome_cliente;
-    @Column(nullable = false, length=50)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id_cliente;
+//    @Column(name="nome_cliente", nullable=false, length=50)
+    private String nome;
+//    @Column(nullable = false, length=50)
     private String cognome;
-    @Column(nullable = false, unique=true)
+//    @Column(nullable = false, unique=true)
     private String email;
-    @Column(nullable = false, unique=true)
-    private String telefono;
+//    @Column(nullable = false, unique=true)
+    private String telefone;
 
-
-    public Cliente(int id_cliente, String nome_cliente, String cognome, String email, String telefono) {
+    public Cliente(int id_cliente,String nome, String cognome, String email, String telefone) {
 
         this.id_cliente = id_cliente;
-    this.nome_cliente = nome_cliente;
+    this.nome = nome;
         this.cognome = cognome;
         this.email = email;
-        this.telefono = telefono;
+        this.telefone = telefone;
     }
 
-    public Cliente(String nome_cliente, String cognome, String email, String telefono) {
+    public Cliente(String nome, String cognome, String email, String telefone) {
 
 
-        this.nome_cliente = nome_cliente;
+        this.nome = nome;
         this.cognome = cognome;
         this.email = email;
-        this.telefono = telefono;
+        this.telefone = telefone;
     }
 
     public Cliente(){}
@@ -48,12 +43,12 @@ public class Cliente {
 
 
 
-    public String getNome_cliente() {
-        return nome_cliente;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNome_cliente(String nome) {
-        this.nome_cliente = nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getCognome() {
@@ -72,22 +67,22 @@ public class Cliente {
         this.email = email;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setTelefono(String telefone) {
-        this.telefono = telefone;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     @Override
     public String toString() {
         return "cliente{" +
                 "idcliente=" + id_cliente +
-                ", nome='" + nome_cliente + '\'' +
+                ", nome='" + nome + '\'' +
                 ", cognome='" + cognome + '\'' +
                 ", email='" + email + '\'' +
-                ", telefone='" + telefono + '\'' +
+                ", telefone='" + telefone + '\'' +
                 '}';
     }
 }

@@ -1,4 +1,4 @@
-package org.example.exceptions;
+package org.example;
 
 public class ClienteNonTrovateException extends RuntimeException {
     public ClienteNonTrovateException(String message) {

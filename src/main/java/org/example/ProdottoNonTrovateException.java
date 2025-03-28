@@ -1,4 +1,4 @@
-package org.example.exceptions;
+package org.example;
 
 public class ProdottoNonTrovateException extends RuntimeException {
     public ProdottoNonTrovateException(String message) {
